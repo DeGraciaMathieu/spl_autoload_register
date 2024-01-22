@@ -52,4 +52,15 @@ $app->singleton(
 |
 */
 
+spl_autoload_register(function ($class) {
+
+    if (str_starts_with($class, 'Domain')) {
+
+        $alias = str_replace('Domain', 'App', $class);
+
+        return class_alias($alias, $class);
+    }
+
+}, true, true);
+
 return $app;
